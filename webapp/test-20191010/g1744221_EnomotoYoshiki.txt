@@ -1,0 +1,165 @@
+g1744221, 榎本啓希, 11番まで全て回答
+
+1. 上記スキーマの表(member)を作成せよ。
+$ sqlite3 test.db
+SQLite version 3.28.0 2019-04-15 14:49:49
+Enter ".help" for usage hints.
+sqlite> create table member(
+   ...>     id integer,
+   ...>     name text,
+   ...>     age integer,
+   ...>     section text
+   ...> );
+
+
+2. 作成したmemberに20行データを挿入せよ。
+sqlite> insert into member values (01,  'tanaka', 57, 'eigyo');
+sqlite> insert into member values (02,  'tanaka', 57, 'se');
+sqlite> insert into member values (03,  'suzuki', 42, 'eigyo');
+sqlite> insert into member values (04,  'suzuki', 42, 'se');
+sqlite> insert into member values (05,  'ikeda', 20, 'koho');
+sqlite> insert into member values (06,  'ikeda', 20, 'jinji');
+sqlite> insert into member values (07,  'ikeda', 20, 'programmer');
+sqlite> insert into member values (08,  'ikeda', 20, 'se');
+sqlite> insert into member values (09,  'enomoto', 30, 'eigyo');
+sqlite> insert into member values (10,  'enomoto', 30, 'se');
+sqlite> insert into member values (11,  'enomoto', 30, 'programmer');
+sqlite> insert into member values (12,  'arai', 28, 'se');
+sqlite> insert into member values (13,  'arai', 28, 'cto');
+sqlite> insert into member values (14,  'arai', 28, 'programmer');
+sqlite> insert into member values (16,  'yamamoto', 60, 'ceo');
+sqlite> insert into member values (17,  'mori', 50, 'programmer');
+sqlite> insert into member values (18,  'mori', 50, 'se');
+sqlite> insert into member values (19,  'mori', 50, 'sequrity');
+sqlite> insert into member values (20,  'mori', 50, 'jinji');
+
+3. 全データを取り出せ
+sqlite> select * from member;
+1|tanaka|57|eigyo
+2|tanaka|57|se
+3|suzuki|42|eigyo
+4|suzuki|42|se
+5|ikeda|20|koho
+6|ikeda|20|jinji
+7|ikeda|20|programmer
+8|ikeda|20|se
+9|enomoto|30|eigyo
+10|enomoto|30|se
+11|enomoto|30|programmer
+12|arai|28|se
+13|arai|28|cto
+14|arai|28|programmer
+16|yamamoto|60|ceo
+17|mori|50|programmer
+18|mori|50|se
+19|mori|50|sequrity
+20|mori|50|jinji
+
+4. 所属課(section)、名前(name)、年齢(age)の順に取り出せ。
+sqlite> select section, name, age from member;
+eigyo|tanaka|57
+se|tanaka|57
+eigyo|suzuki|42
+se|suzuki|42
+koho|ikeda|20
+jinji|ikeda|20
+programmer|ikeda|20
+se|ikeda|20
+eigyo|enomoto|30
+se|enomoto|30
+programmer|enomoto|30
+se|arai|28
+cto|arai|28
+programmer|arai|28
+ceo|yamamoto|60
+programmer|mori|50
+se|mori|50
+sequrity|mori|50
+jinji|mori|50
+
+5. 名前(name)の重複を排除して取り出せ。
+sqlite> select DISTINCT name from member;
+tanaka
+suzuki
+ikeda
+enomoto
+arai
+yamamoto
+mori
+
+
+6. 30歳以上~60歳未満のタプルを取り出せ。
+sqlite> select * from member where age>=30 and age<60;
+1|tanaka|57|eigyo
+2|tanaka|57|se
+3|suzuki|42|eigyo
+4|suzuki|42|se
+9|enomoto|30|eigyo
+10|enomoto|30|se
+11|enomoto|30|programmer
+17|mori|50|programmer
+18|mori|50|se
+19|mori|50|sequrity
+20|mori|50|jinji
+
+7. 年齢の高い順に取り出せ。
+sqlite> select * from member order by age DESC;
+16|yamamoto|60|ceo
+1|tanaka|57|eigyo
+2|tanaka|57|se
+17|mori|50|programmer
+18|mori|50|se
+19|mori|50|sequrity
+20|mori|50|jinji
+3|suzuki|42|eigyo
+4|suzuki|42|se
+9|enomoto|30|eigyo
+10|enomoto|30|se
+11|enomoto|30|programmer
+12|arai|28|se
+13|arai|28|cto
+14|arai|28|programmer
+5|ikeda|20|koho
+6|ikeda|20|jinji
+7|ikeda|20|programmer
+8|ikeda|20|se
+
+8. 年齢の低い上位3人を取り出せ。
+sqlite> select * from member ORDER BY age LIMIT 3;
+5|ikeda|20|koho
+6|ikeda|20|jinji
+7|ikeda|20|programmer
+
+9. 年齢の低い順に名前の重複なしで取り出せ。
+sqlite> select DISTINCT name from member ORDER BY age;
+ikeda
+arai
+enomoto
+suzuki
+mori
+tanaka
+yamamoto
+
+10. 平均年齢が50歳以下の課に限って課名と平均年齢 を取り出せ。
+sqlite> select section, avg(age) from member group by section having age<=50;
+cto|28.0
+jinji|35.0
+koho|20.0
+programmer|32.0
+sequrity|50.0
+
+11. 任意の文字列を含む人􏱥データを取り出せ。
+sqlite> select * from member where name like '%i%';
+3|suzuki|42|eigyo
+4|suzuki|42|se
+5|ikeda|20|koho
+6|ikeda|20|jinji
+7|ikeda|20|programmer
+8|ikeda|20|se
+12|arai|28|se
+13|arai|28|cto
+14|arai|28|programmer
+17|mori|50|programmer
+18|mori|50|se
+19|mori|50|sequrity
+20|mori|50|jinji
