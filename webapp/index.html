@@ -8,40 +8,85 @@
   <meta name="author" content="Enomoto Yoshiki">
   <link rev="made" href="index.html">
   <link rel="index" href="index.html">
+  <link rel="stylesheet" href="prism.css">
+  <script type="text/javascript" src="prism.js"></script>
   <head>
     <meta charset="UTF-8">
     <title>実践Webアプリケーション</title>
   </head>
 <body>
-<div id="menu">
-  <ul>
-    <li><a href="#" class="current">ホーム</a></li>
-    <li><a href="class02/index.php">02</a></li>
-  </ul>
-</div>
-<hr>
 <h1>実践Webアプリケーション</h1>
 <div class="belt">
   <h2><a name="Classes">授業一覧</a></h2>
 </div>
 <ul>
-  <li><a href="#">第1回（環境設定）</a></li>
-  <li><a href="class02/index.php">第2回</a></li>
-  <li><a href="#">第3回</a></li>
-  <li><a href="#">第4回</a></li>
-  <li><a href="#">第5回</a></li>
-  <li><a href="#">第6回</a></li>
-  <li><a href="#">第7回</a></li>
-  <li><a href="#">第8回</a></li>
-  <li><a href="#">第9回</a></li>
-  <li><a href="#">第10回</a></li>
+  <li><a href="#1">第1回</a></li>
+  <li><a href="#2">第2回</a></li>
+  <li><a href="#3">第3回</a></li>
+  <li><a href="#4">第4回</a></li>
+  <li><a href="#5">第5回</a></li>
+  <li><a href="#6">第6回</a></li>
+  <li><a href="#7">第7回</a></li>
+  <li><a href="#8">第8回</a></li>
+  <li><a href="#9">第9回</a></li>
+  <li><a href="#10">第10回</a></li>
 </ul>
 <div class="belt">
-  <h2><a name="Others">その他</a></h2>
+  <h2><a id="1">第1回</a></h2>
 </div>
 <ul>
-  <li><a href="sample/dbSample.php">db接続テスト</a></li>
+  <li>docker-compose.yml</li>
+<pre class="line-numbers"><code class="language-yaml">
+version: '3'
+
+services:
+  php:
+    image: php:7.2-apache
+    volumes:
+      - ./webapp:/var/www/html
+    ports:
+      - 80:80
+</code></pre>
+  <li>起動</li>
+<pre class="line-numbers"><code class="language-shell">$ docker-compose up</code></pre>
+  <li>停止</li>
+  <pre class="line-numbers"><code class="language-shell">$ docker-compose down</code></pre>
 </ul>
+<div class="belt">
+  <h2><a id="2">第2回</a></h2>
+</div>
+<ul>
+  <li><a href="./class02/info.php">phpinfo(）</a></li>
+  <li><a href="./class02/dbSample.php">db接続テスト</a></li>
+  <li><a href="https://github.com/s06181110/University-webapp/tree/master/webapp/class02/enshu.sql">sqlite操作練習</a></li>
+</ul>
+<div class="belt">
+  <h2><a id="3">第3回</a></h2>
+</div>
+<div class="belt">
+  <h2><a id="4">第4回</a></h2>
+</div>
+<div class="belt">
+  <h2><a id="5">第5回</a></h2>
+</div>
+<div class="belt">
+  <h2><a id="6">第6回</a></h2>
+</div>
+<div class="belt">
+  <h2><a id="7">第7回</a></h2>
+</div>
+<div class="belt">
+  <h2><a id="8">第8回</a></h2>
+</div>
+<div class="belt">
+  <h2><a id="9">第9回</a></h2>
+</div>
+<div class="belt">
+  <h2><a id="10">第10回</a></h2>
+</div>
+<div class="belt">
+  <h2><a id="11">第11回</a></h2>
+</div>
 </body>
 </html>
 
@@ -113,16 +158,6 @@
 
   p.belt-blue {
     background-color: #ddeeff;
-    padding: 4px 8px;
-  }
-
-  pre.belt {
-    background-color: #ddeeff;
-    padding: 4px 8px;
-  }
-
-  pre.belt-yellow {
-    background-color: #ffffcc;
     padding: 4px 8px;
   }
 
