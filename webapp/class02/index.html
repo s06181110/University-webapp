@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <meta http-equiv="Content-Script-Type" content="text/javascript">
+  <meta name="description" content="実践Webアプリケーション">
+  <meta name="author" content="Enomoto Yoshiki">
+  <link rev="made" href="index.html">
+  <link rel="index" href="index.html">
+  <link rel="stylesheet" href="../assets/index.css">
+  <link rel="stylesheet" href="../assets/prism.css">
+  <script type="text/javascript" src="../assets/prism.js"></script>
+  <head>
+    <meta charset="UTF-8">
+    <title>実践Webアプリケーション</title>
+  </head>
+<body>
+  <nav id="menu">
+    <ul>
+      <li>
+        <a href="#">PHP</a>
+      </li>
+      <li>
+        <a href="../index.html">実践Webアプリケーション</a>
+      </li>
+      <li>
+        <a href="../class01/index.html">01</a>
+      </li>
+      <li>
+        <a href="../class02/index.html" class="current">02</a>
+      </li>
+      <li>
+        <a href="../class03/index.html">03</a>
+      </li>
+      <li>
+        <a href="../class04/index.html">04</a>
+      </li>
+      <li>
+        <a href="../class05/index.html">05</a>
+      </li>
+      <li>
+        <a href="../class06/index.html">06</a>
+      </li>
+      <li>
+        <a href="../class07/index.html">07</a>
+      </li>
+      <li>
+        <a href="../class08/index.html">08</a>
+      </li>
+      <li>
+        <a href="../class09/index.html">09</a>
+      </li>
+      <li>
+        <a href="../class10/index.html">10</a>
+      </li>
+      <li>
+        <a href="../class11/index.html">11</a>
+      </li>
+      <li>
+        <a href="../class12/index.html">12</a>
+      </li>
+      <li>
+        <a href="../class13/index.html">13</a>
+      </li>
+      <li>
+        <a href="../class14/index.html">14</a>
+      </li>
+      <li>
+        <a href="../class15/index.html">15</a>
+      </li>
+    </ul>
+  </nav>
+  <hr>
+<ul>
+    <li><a href="#1">SQLite基本操作</a></li>
+    <li><a href="#2">演習1</a></li>
+    <li><a href="#3">PHPの動作確認</a></li>
+    <li><a href="#4">PHPからデータベースに接続</a></li>
+</ul>
+<!-- 1 ********************************************************************************************************************-->
+<div class="belt">
+  <h2><a id="1">SQLite基本操作</a></h2>
+</div>
+<p class="belt"><b>テーブル作成</b></p>
+<p>
+  test.dbというデータベースの中にidとテキストを属性にもつstudentテーブルを作成する。
+</p>
+<blockquote>
+<pre>
+$ <span class=command>sqlite3 webapp/class02/test.db</span>
+SQLite version 3.32.3 2020-06-18 14:16:19
+Enter ".help" for usage hints.
+sqlite&gt; <span class=command>create table students(id int, name text);</span>
+sqlite&gt; <span class=command>.table</span>
+students
+</pre>
+</blockquote>
+<p>現在のテーブル</p>
+<blockquote>
+  <table class="sql-table">
+    <tbody>
+      <tr>
+        <th>id</th>
+        <th>name</th>
+      </tr>
+      <tr>
+        <td> - </td>
+        <td> - </td>
+      </tr>
+    </tbody>
+  </table>
+</blockquote>
+本来ならIDなど、一意に決まるものを主キーとして設定する。そして、IDは基本通し番号であるため、自動で割り振るのが一般的である。これらのことを実現するには上記のCreate文を以下のように変更する。
+<blockquote>
+<pre>
+sqlite&gt; create table students(id <span class=command>integer primary key autoincrement</span>, name text);
+</pre>
+</blockquote>
+<p class="belt"><b>テーブル操作</b></p>
+<p class="mb-0">データの挿入</p>
+<div style="display: flex; align-items: center;">
+  <div>
+    <blockquote>
+<pre>
+sqlite3&gt; <span class=command>insert into students values(1, 'Taro');</span>
+sqlite3&gt; <span class=command>insert into students values(2, 'Hana');</span>
+sqlite3&gt; <span class=command>insert into students values(3, 'Junko');</span>
+</pre>
+    </blockquote>
+  </div>
+  <div style="margin-left: 50px;">
+    <table class="sql-table">
+      <tbody>
+        <tr>
+          <th>id</th>
+          <th>name</th>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>Taro</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>Hana</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>Junko</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<p>データの確認</p>
+<blockquote>
+<pre>
+sqlite3&gt; <span class=command>select * from students;</span>
+1|taro
+2|Hana
+3|Junko
+</pre>
+</blockquote>
+<p class="mb-0">データ削除</p>
+<div style="display: flex; align-items: center;">
+  <div>
+    <blockquote>
+<pre>
+# studentのidが1のものを削除
+sqlite3&gt; <span class=command>delete from students where id = 1;</span>
+sqlite3&gt; <span class=command>select * from students;</span>
+2|Hana
+3|Junko
+# studentのtextがJunkoのものを削除
+sqlite3&gt; <span class=command>delete from students where text = 'Junko';</span>
+</pre>
+    </blockquote>
+  </div>
+  <div style="margin-left: 50px;">
+    <table class="sql-table">
+      <tbody>
+        <tr>
+          <th>id</th>
+          <th>name</th>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>Hana</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<p class="mb-0">データ更新</p>
+<div style="display: flex; align-items: center;">
+  <div>
+    <blockquote>
+<pre>
+sqlite3&gt; <span class=command>update students set name='Hanako' where id = 2;</span>
+sqlite3&gt; <span class=command>select * from students;</span>
+2|Hanako
+</pre>
+    </blockquote>
+  </div>
+  <div>
+    <div style="margin-left: 50px;">
+      <table class="sql-table">
+        <tbody>
+          <tr>
+            <th>id</th>
+            <th>name</th>
+          <tr>
+            <td>2</td>
+            <td>Hanako</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<p class="belt">テーブル削除</p>
+<blockquote>
+<pre>
+sqlite3&gt; <span class=command>drop table students;</span>
+sqlite3&gt; <span class=command>.table</span>
+sqlite3&gt;
+</pre>
+</blockquote>
+<!-- 2 ********************************************************************************************************************-->
+<div class="belt">
+  <h2><a id="2">演習1</a></h2>
+</div>
+<p>
+  SQLの演習問題です。課題じゃないのでほとんどの答えは資料に載ってました。私の回答も最後に載せときます。
+</p>
+<p class="belt">1-1</p>
+次のテーブルを作成し、行を5つ以上挿入せよ。
+<table class="sql-table" style="margin: auto;">
+  <caption>seiseki</caption>
+  <tbody>
+    <tr>
+      <th>id</th>
+      <th>name</th>
+      <th>kogi</th>
+      <th>point</th>
+    </tr>
+    <tr>
+      <td>01</td>
+      <td>taro</td>
+      <td>webapp</td>
+      <td>87</td>
+    </tr>
+  </tbody>
+</table>
+<ul>
+  <li><b>追加条件</b></li>
+  <ul>
+    <li>3名以上、講義は2種類作成</li>
+    <li>2名は両方の講義を受講</li>
+    <li>80点以上の行を2つ以上</li>
+  </ul>
+</ul>
+<p class="belt">1-2</p>
+<p>1-1で作成したテーブルに問い合わせしましょう。</p>
+<ul>
+  <li>全列を取り出す</li>
+  <li>名前と講義名を取り出す</li>
+  <li>講義名、ID、名前、点数の順に取り出す</li>
+</ul>
+<p class="belt">1-3</p>
+<p>1-2に同じ。</p>
+<ul>
+  <li>講義の重複を排除して取り出す</li>
+  <li>80〜89点以下のタプルを取り出す</li>
+</ul>
+<p>ヒント：</p>
+<ul>
+  <li>
+    <p class="mb-0">重複を排除</p>
+<pre>
+sqlite&gt; select <span class=command>distinct 属性</span> from テーブル名
+</pre>
+  </li>
+  <li>
+    <p class="mb-0">条件指定（論理演算的な）</p>
+<pre>
+sqlite&gt; select * from テーブル名 <span class=command>where 属性 &gt;= 150</span>;
+sqlite&gt; select * from テーブル名 <span class=command>where 属性 &gt;= 50 and 属性 &lt;= 200 </span>;
+sqlite&gt; select * from テーブル名 <span class=command>where 属性 between 50 and 200 </span>;
+</pre>
+  </li>
+</ul>
+<p class="belt">1-4</p>
+<p>1-2に同じ。</p>
+<ul>
+  <li>点数の高い順に出す</li>
+</ul>
+<p>ヒント：order by</p>
+<p class="belt">1-5</p>
+<p>1-2に同じ。</p>
+<ul>
+  <li>点数の平均を講義名毎に取り出す</li>
+</ul>
+<p>ヒント：avg（average）, group by</p>
+<p class="belt">1-6</p>
+<p>1-2に同じ。</p>
+<ul>
+  <li>平均点が60点以上の人の名前と平均点を取り出す</li>
+</ul>
+<p>ヒント：having</p>
+<p class="belt">1-7</p>
+<p>1-2に同じ。</p>
+<ul>
+  <li>講義科目の平均（成績）が高い人、上位2名を取り出す</li>
+</ul>
+<p>ヒント：limit</p>
+<p>私の回答は<a href="./enshu.txt">こちら</a></p>
+<!-- 3 ********************************************************************************************************************-->
+<div class="belt">
+  <h2><a id="3">PHPの動作確認</a></h2>
+</div>
+<p>phpファイルのtest.phpを作成。</p>
+<blockquote>
+<pre>
+$ <span class=command>touch webapp/class02/test.php</span>
+</pre>
+</blockquote>
+<p>好きなエディタで、以下のコードを記述。</p>
+<pre><code class="language-php">&lt;?php phpinfo(); ?&gt;</code></pre>
+<p>
+  サーバを立ち上げてアクセスすると、phpのバージョンなどが記述されている画面を見ることができる。「<a href="./info.php">サンプル</a>」<span style="font-size: small;">※置いてるサーバによっては動かないかも</span>
+</p>
+<!-- 4 ********************************************************************************************************************-->
+<div class="belt">
+  <h2><a id="4">PHPからデータベースに接続</a></h2>
+</div>
+<p>
+  <a href="#1">SQLite基本操作</a>のデータ挿入後のデータベースをsample.dbとして用意しておく。<br>
+  その後、以下のプログラムをdbSample.phpに記述し、アクセスする。このコードはデータのidとnameを取り出して出力するだけのものです。
+</p>
+<pre class="line-numbers"><code class="language-php">&lt;h3&gt;SQLiteとの接続テスト&lt;/h3&gt;
+&lt;?php
+try{
+    $pdh = new PDO('sqlite:sample.db');
+    $sth = $pdh->prepare("select * from students");
+    $sth->execute();
+
+    while ($row = $sth->fetch()){
+        echo $row['id']. $row['name']. "&lt;br&gt;";
+    }
+} Catch (PDOException $e) {
+    print "error! ". $e->getMessage(). "&lt;br&gt;";
+    die();
+}
+
+?&gt;</code></pre>
+「<a href="./dbSample.php">サンプル</a>」 ※置いてるサーバによっては動かないかも
+<hr>
+<div class="right-small">
+    Updated: 2021/2/15 (Created: 2021/2/15) 
+</div>
+</body>
+</html>

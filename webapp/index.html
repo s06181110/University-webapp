@@ -1,4 +1,4 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html lang="ja">
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -8,14 +8,74 @@
   <meta name="author" content="Enomoto Yoshiki">
   <link rev="made" href="index.html">
   <link rel="index" href="index.html">
-  <link rel="stylesheet" href="prism.css">
-  <script type="text/javascript" src="prism.js"></script>
+  <link rel="stylesheet" href="assets/index.css">
+  <link rel="stylesheet" href="assets/prism.css">
+  <script type="text/javascript" src="assets/prism.js"></script>
   <head>
     <meta charset="UTF-8">
     <title>実践Webアプリケーション</title>
   </head>
 <body>
+  <nav id="menu">
+    <ul>
+      <li>
+        <a href="#">PHP</a>
+      </li>
+      <li>
+        <a href="./index.html" class="current">実践Webアプリケーション</a>
+      </li>
+      <li>
+        <a href="./class01/index.html">01</a>
+      </li>
+      <li>
+        <a href="./class02/index.html">02</a>
+      </li>
+      <li>
+        <a href="./class03/index.html">03</a>
+      </li>
+      <li>
+        <a href="./class04/index.html">04</a>
+      </li>
+      <li>
+        <a href="./class05/index.html">05</a>
+      </li>
+      <li>
+        <a href="./class06/index.html">06</a>
+      </li>
+      <li>
+        <a href="./class07/index.html">07</a>
+      </li>
+      <li>
+        <a href="./class08/index.html">08</a>
+      </li>
+      <li>
+        <a href="./class09/index.html">09</a>
+      </li>
+      <li>
+        <a href="./class10/index.html">10</a>
+      </li>
+      <li>
+        <a href="./class11/index.html">11</a>
+      </li>
+      <li>
+        <a href="./class12/index.html">12</a>
+      </li>
+      <li>
+        <a href="./class13/index.html">13</a>
+      </li>
+      <li>
+        <a href="./class14/index.html">14</a>
+      </li>
+      <li>
+        <a href="./class15/index.html">15</a>
+      </li>
+    </ul>
+  </nav>
+  <hr>
 <h1>実践Webアプリケーション</h1>
+<p>
+  2019年秋学期に受講した実践Webアプリケーションの備忘録です。
+</p>
 <div class="belt">
   <h2><a name="Classes">授業一覧</a></h2>
 </div>
@@ -31,42 +91,36 @@
   <li><a href="#9">第9回</a></li>
   <li><a href="#10">第10回</a></li>
 </ul>
+<!-- 1 ********************************************************************************************************************-->
 <div class="belt">
-  <h2><a id="1">第1回</a></h2>
+  <h2><a id="1" href="./class01/index.html">第1回</a></h2>
 </div>
-<ul>
-  <li>docker-compose.yml</li>
-<pre class="line-numbers"><code class="language-yaml">
-version: '3'
-
-services:
-  php:
-    image: php:7.2-apache
-    volumes:
-      - ./webapp:/var/www/html
-    ports:
-      - 80:80
-</code></pre>
-  <li>起動</li>
-<pre class="line-numbers"><code class="language-shell">$ docker-compose up</code></pre>
-  <li>停止</li>
-  <pre class="line-numbers"><code class="language-shell">$ docker-compose down</code></pre>
-</ul>
+<div class="belt-blue">
+  <ul>
+      <li><a href="./class01/index.html#1">環境構築</a></li>
+      <li><a href="./class01/index.html#2">SQLiteの使い方</a></li>
+  </ul>
+</div>
+<!-- 2 ********************************************************************************************************************-->
 <div class="belt">
-  <h2><a id="2">第2回</a></h2>
+  <h2><a id="2" href="./class02/index.html">第2回</a></h2>
 </div>
-<ul>
-  <li><a href="./class02/info.php">phpinfo(）</a></li>
-  <li><a href="./class02/dbSample.php">db接続テスト</a></li>
-  <li><a href="https://github.com/s06181110/University-webapp/tree/master/webapp/class02/enshu.sql">sqlite操作練習</a></li>
-</ul>
+<div class="belt-yellow">
+  <ul>
+    <li><a href="./class02/index.html#1">SQLite基本操作</a></li>
+    <li><a href="./class02/index.html#2">演習1</a></li>
+    <li><a href="./class02/index.html#3">PHPの動作確認</a></li>
+    <li><a href="./class02/index.html#4">PHPからデータベースに接続</a></li>
+  </ul>
+</div>
 <div class="belt">
   <h2><a id="3">第3回</a></h2>
 </div>
-<ul>
-  <li><a href="https://github.com/s06181110/University-webapp/tree/master/webapp/class03/test-20191010/temp.sql">小テスト回答</a></li>
-  <li><a href="https://github.com/s06181110/University-webapp/tree/master/webapp/class03/test-20191010/g1744221_EnomotoYoshiki.txt">小テスト出力結果</a></li>
-</ul>
+<div class="belt-pink">
+  <ul>
+      <li><a href="./class03/index.html#1">小テスト</a></li>
+  </ul>
+</div>
 <div class="belt">
   <h2><a id="4">第4回</a></h2>
 </div>
@@ -143,254 +197,9 @@ services:
 <ul>
   <li><a href="class15/final_744221.php">最終課題</a></li>
 </ul>
+<hr>
+<div class="right-small">
+    Updated: 2021/2/15 (Created: 2021/2/11) 
+</div>
 </body>
 </html>
-
-<style type="text/css">
-  body {
-    background-color: #ffffff;
-    margin: 20px;
-    padding: 10px;
-    font-family: serif;
-    font-size: 10pt;
-  }
-
-  a {
-    text-decoration: underline;
-    color: #000000;
-  }
-
-  a:link {
-    background-color: #ffddbb;
-  }
-
-  a:visited {
-    background-color: #ccffcc;
-  }
-
-  a:hover {
-    background-color: #dddddd;
-  }
-
-  a:active {
-    background-color: #dddddd;
-  }
-
-  div.belt {
-    background-color: #eeeeee;
-    padding: 0px 4px;
-  }
-
-  div.belt-yellow {
-    background-color: #ffffcc;
-    padding: 0px 4px;
-  }
-
-  div.belt-blue {
-    background-color: #ddeeff;
-    padding: 0px 4px;
-  }
-
-  div.right-small {
-    text-align: right;
-    font-size: 8pt;
-  }
-
-  img.border {
-    border-width: 1px;
-    border-color: #000000;
-    vertical-align: middle;
-  }
-
-  img.borderless {
-    border-width: 0px;
-    vertical-align: middle;
-  }
-
-  p.belt {
-    background-color: #ffeedd;
-    padding: 4px 8px;
-  }
-
-  p.belt-blue {
-    background-color: #ddeeff;
-    padding: 4px 8px;
-  }
-
-  table {
-    border-style: solid;
-    border-width: 0px;
-    border-color: #000000;
-    font-family: serif;
-    font-size: 10pt;
-  }
-
-  table.profile {
-    border-style: solid;
-    border-width: 0px;
-    border-color: #000000;
-    font-family: serif;
-    font-size: 10pt;
-    margin-top: 8px;
-    margin-left: 8px;
-    margin-right: 8px;
-    margin-bottom: 8px;
-  }
-
-  table.belt {
-    border-style: solid;
-    border-width: 0px;
-    border-color: #000000;
-    background-color: #ffeedd;
-    padding: 0px 0px;
-    width: 100%;
-  }
-
-  table.content {
-    border-style: solid;
-    border-width: 0px;
-    border-color: #000000;
-    padding: 2px 4px;
-  }
-
-  table.font-fixed {
-    border-style: solid;
-    border-width: 0px;
-    border-color: #000000;
-    padding: 2px 4px;
-    font-family: monospace;
-  }
-
-  table.nest {
-    border-style: solid;
-    border-width: 0px;
-    border-color: #000000;
-    padding: 0px 0px;
-  }
-
-  td {
-    padding: 0px 0px;
-    vertical-align: middle;
-  }
-
-  td.center {
-    text-align: center;
-  }
-
-  td.center-half {
-    text-align: center;
-    width: 50%;
-    font-size: 8pt;
-  }
-
-  td.center-small {
-    text-align: center;
-    font-size: 8pt;
-    padding: 0px 4px;
-  }
-
-  td.center-small-nopadding {
-    text-align: center;
-    font-size: 8pt;
-    padding: 0px 0px;
-  }
-
-  td.center-white {
-    text-align: center;
-    background-color: #ffffff;
-  }
-
-  td.center-small-white {
-    text-align: center;
-    font-size: 8pt;
-    background-color: #ffffff;
-  }
-
-  td.center-border1 {
-    text-align: center;
-    vertical-align: middle;
-    empty-cells: show;
-    border-style: solid;
-    border-width: 1px;
-    border-color: #ffc080;
-    width: 22px;
-    height: 22px;
-  }
-
-  td.left-small {
-    text-align: left;
-    font-size: 8pt;
-    padding: 0px 4px;
-  }
-
-  td.left-small-white {
-    text-align: left;
-    font-size: 8pt;
-    padding: 0px 4px;
-    background-color: #ffffff;
-  }
-
-  td.right-small {
-    text-align: right;
-    font-size: 8pt;
-    padding: 0px 4px;
-  }
-
-  td.right-small-white {
-    text-align: right;
-    font-size: 8pt;
-    padding: 0px 4px;
-    background-color: #ffffff;
-  }
-
-  th {
-    padding: 0px 0px;
-    vertical-align: middle;
-  }
-
-  #menu {
-    margin: 0px 0px 0px 0px;
-    padding: 0px;
-    height: 32px;
-  }
-
-  #menu ul {
-    margin: 0px;
-    padding: 0px;
-    list-style: none;
-    text-align: center;
-    clear: both;
-  }
-
-  #menu li {
-    margin: 0px 5px 0px 0px;
-    padding: 0px;
-    float: left;
-  }
-
-  #menu a {
-    display: block;
-    padding: 2px 4px;
-    text-decoration: none;
-    margin: 0px;
-    font-weight: bold;
-    background: #FFFFFF;
-    color: #333333;
-    border: 1px solid #666666;
-  }
-
-  #menu a:hover {
-    display: block;
-    padding: 2px 4px;
-    border-bottom: 1px solid #000000;
-    text-decoration: none;
-    background: #FFCC66;
-  }
-
-  #menu .current {
-    background-color: #F45F57;
-    font-weight: bold;
-    color: #FFFFFF;
-    border: 1px solid #333333;
-  }
-</style>

@@ -148,7 +148,7 @@ koho|20.0
 programmer|32.0
 sequrity|50.0
 
-11. 任意の文字列を含む人􏱥データを取り出せ。
+11. 任意の文字列を含む人のデータを取り出せ。
 sqlite> select * from member where name like '%i%';
 3|suzuki|42|eigyo
 4|suzuki|42|se

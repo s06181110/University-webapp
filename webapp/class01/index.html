@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <meta http-equiv="Content-Script-Type" content="text/javascript">
+  <meta name="description" content="実践Webアプリケーション">
+  <meta name="author" content="Enomoto Yoshiki">
+  <link rev="made" href="index.html">
+  <link rel="index" href="index.html">
+  <link rel="stylesheet" href="../assets/index.css">
+  <link rel="stylesheet" href="../assets/prism.css">
+  <script type="text/javascript" src="../assets/prism.js"></script>
+  <head>
+    <meta charset="UTF-8">
+    <title>実践Webアプリケーション</title>
+  </head>
+<body>
+  <nav id="menu">
+    <ul>
+      <li>
+        <a href="#">PHP</a>
+      </li>
+      <li>
+        <a href="../index.html">実践Webアプリケーション</a>
+      </li>
+      <li>
+        <a href="../class01/index.html" class="current">01</a>
+      </li>
+      <li>
+        <a href="../class02/index.html">02</a>
+      </li>
+      <li>
+        <a href="../class03/index.html">03</a>
+      </li>
+      <li>
+        <a href="../class04/index.html">04</a>
+      </li>
+      <li>
+        <a href="../class05/index.html">05</a>
+      </li>
+      <li>
+        <a href="../class06/index.html">06</a>
+      </li>
+      <li>
+        <a href="../class07/index.html">07</a>
+      </li>
+      <li>
+        <a href="../class08/index.html">08</a>
+      </li>
+      <li>
+        <a href="../class09/index.html">09</a>
+      </li>
+      <li>
+        <a href="../class10/index.html">10</a>
+      </li>
+      <li>
+        <a href="../class11/index.html">11</a>
+      </li>
+      <li>
+        <a href="../class12/index.html">12</a>
+      </li>
+      <li>
+        <a href="../class13/index.html">13</a>
+      </li>
+      <li>
+        <a href="../class14/index.html">14</a>
+      </li>
+      <li>
+        <a href="../class15/index.html">15</a>
+      </li>
+    </ul>
+  </nav>
+  <hr>
+<ul>
+    <li><a href="#1">環境構築</a></li>
+    <li><a href="#2">SQLiteの使い方</a></li>
+</ul>
+<!-- 1 ********************************************************************************************************************-->
+<div class="belt">
+  <h2><a id="1">環境構築</a></h2>
+</div>
+<p>
+  本来ならapacheの環境構築が講義内容ですが、めんどくさいので<a href="https://www.docker.com/">Docker</a>で行います。
+  <span style="font-size: small;">※環境構築の部分テストに出たので注意</span><br>
+</p>
+<ul>
+  <li>必要なもの</li>
+  <ul>
+    <li>docker</li>
+    <li>docker-compose</li>
+  </ul>
+</ul>
+
+<ul><li>ディレクトリ構造</li></ul>
+<blockquote>
+  <pre><code class="language-treeview">
+    実践Webアプリケーション/
+    |-- docker-compose.yml
+    `-- webapp/
+        |-- index.html
+        |-- test.db
+        `-- zzz.php
+  </code></pre>
+</blockquote>
+<p>
+  環境構築自体は<b>docker-compose.yml</b>のみで完結する。dockerでapache + phpの環境を動かすと、webappディレクトリ以下に入れたファイルは<a href="http://localhost/index.html">http://localhost/index.html</a>のように「localhost/ファイル名」でアクセスできるようになる。これは、授業で言うところのSitesディレクトリに相当する。
+</p>
+
+<ul><li>docker-compose.yml</li></ul>
+<blockquote>
+  <pre class="line-numbers"><code class="language-yaml">version: '3'
+
+  services:
+    php:
+      image: php:7.2-apache
+      volumes:
+        - ./webapp:/var/www/html
+      ports:
+        - 80:80
+  </code></pre>
+</blockquote>
+<p>
+  これが今から立ち上げるコンテナ（apacheサーバ）の設定ファイル。<a href="https://hub.docker.com/">Docker Hub</a>というところから必要なものを探し出してとってくる。今回はphp + apacheの環境が入ったものを利用する。
+  <span style="font-size: small;">※授業に合わせて80:80にしてるけど8080:80とかにするのが一般的。ローカルのポート:コンテナのポートで別環境をポートでつなげる役割</span>
+</p>
+<p>
+  上記のディレクトリ構造と設定ファイルを設え、必要なコマンドもインストールできたら実際に立ち上げてみましょう。以下のコマンドをターミナルにて入力ください。
+</p>
+<ul>
+  <li>
+    <p>起動</p>
+    <pre><code class="language-shell">$ docker-compose up</code></pre>
+  </li>
+  <li>
+    <p>停止</p>
+    <pre><code class="language-shell">$ docker-compose down</code></pre>
+  </li>
+</ul>
+<div class="belt">
+    <h2><a id="2">SQLiteの使い方</a></h2>
+  </div>
+<p>
+  授業ではもともと入ってるSQLiteを利用するみたいです。一般的な開発にはMySQLとかを使うんですが、慣れてない生徒のためにサーバ不要なものにしたという。まぁ、SQLを扱うといった練習には最適なものでしょう。
+</p>
+<ul>
+  <li>
+    <p>起動</p>
+    <pre><code class="language-shell">$ sqlite3
+# or
+$ sqlite3 データベース名</code></pre>
+    <p>SQLiteはファイルがデータベースになるため、後者じゃないとSQLが使えない。前者で起動しても新たにcreate databaseすることはできない。</p>
+</li>
+  <li>終了(3パターン)</li>
+  <pre><code class="language-sql">sqlite&gt; ^D # ctl-D
+sqlite&gt; .quit
+sqlite&gt; .exit</code></pre>
+  <li>ヘルプ</li>
+  <pre><code class="language-shell">sqlite> .help</code></pre>
+</ul>
+<hr>
+<div class="right-small">
+    Updated: 2021/2/15 (Created: 2021/2/11) 
+</div>
+</body>
+</html>
